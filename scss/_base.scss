@@ -1,0 +1,250 @@
+body {
+	font-family: 'Montserrat';
+	font-weight: 400;
+	line-height: 1.5;
+}
+
+
+.wrapper {
+	background: $gradient-supersoft;
+	border-radius: 0px 0px 12px 12px;
+	position: relative;
+	&::before {
+		content: '';
+		position: absolute;
+	  z-index: -10;
+	  height: 20px;
+	  right: 20px;
+		left: 20px;
+		bottom: -10px;
+	  background: #CACADB;
+	  border-radius: 0 0 12px 12px;
+	}
+
+	&::after {
+		content: '';
+		position: absolute;
+		z-index: -20;
+		height: 20px;
+		left: 40px;
+		right: 40px;
+		background: #E7E7F2;
+		border-radius: 0 0 12px 12px;
+	}
+}
+
+.list_custom {
+  li {
+    position: relative;
+    padding-left: 12px;
+  }
+  li:before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 0;
+    width: 5px;
+    height: 5px;
+    border-radius: $radius-rounded;
+    background: $accent-color;
+  }
+}
+
+.container {
+	padding: 0 30px;
+
+	@include vieport-md {
+		max-width: 708px;
+		margin: 0 auto;
+	}
+
+	@include vieport-lg {
+		max-width: 964px;
+	}
+
+	@include vieport-xl {
+		max-width: 1380px;
+	}
+
+	@include vieport-xxl {
+		max-width: 1660px;
+	}
+}
+
+.dotted {
+	display: none;
+
+	@include vieport-md {
+		display: inline-block;
+		width: 6px;
+		height: 6px;
+		border-radius: $radius-rounded;
+		background: $separator-color;
+
+		&--gray {
+			background: $text-color;
+		}
+	}
+}
+
+.hiden {
+  position: absolute;
+	z-index: -100;
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+
+.button_ask_me {
+  padding: 10px;
+	background: rgba($active-regular-color, .5);
+	border-radius: $radius-rounded;
+	@include flex-center;
+	position: fixed;
+	z-index: 100;
+	bottom: 10px;
+	right: 10px;
+	cursor: pointer;
+	@include vieport-md {
+		bottom: 15px;
+		right: 15px;
+	}
+	
+
+	&>svg {
+		width: 30px;
+		height: 30px;
+		fill: white;
+		@include vieport-md {
+			width: 50px;
+			height: 50px;
+		}
+	}
+
+	&:hover {
+		background: $active-regular-color;
+		border: 2px solid blanchedalmond;
+	}
+}
+
+
+.pop_up {
+	position: fixed;
+	z-index: 9999;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background: rgba($main-color, .7);
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity .4s, visibility .4s;
+	@include flex-center;		
+
+	&__box {
+		display: flex;
+		flex-direction: column;
+		padding: 30px;
+		background: $bg-color;
+		transform: scale(0);
+		transition: transform .8s;
+		height: 100vh;
+		overflow: auto;
+		@include vieport-md {
+			border-radius: $radius-md;
+			height: min-content;
+		}
+	}
+
+	&__box-title {
+		@include subtitle-red;
+		margin-bottom: 30px;
+	}
+
+	&__box-input {
+		border: none;
+		padding: 15px;
+		border-radius: $radius-sm;
+		margin-bottom: 15px;
+		&:focus {
+      outline: none;
+		}
+		&::placeholder {
+			color: $text-color;
+			font-family: 'Montserrat';
+			font-size: 16px;
+		}
+	}
+
+	&__box-text {
+		resize:none;
+		border: none;
+		border-radius: $radius-sm;
+		height: 130px;
+		padding: 15px;
+		margin-bottom: 30px;
+		&:focus {
+      outline: none;
+		}
+		&::placeholder {
+			color: $text-color;
+			font-family: 'Montserrat';
+			font-size: 16px;
+		}
+	}
+
+
+	&__box-subtitle {
+    margin-bottom: 15px;
+		@include caps ($text-color);
+	}
+
+	&__box-button {
+		color: $basic-white;
+		font-weight: 700;
+		padding: 18px;
+		background: $active-regular-color;
+		border-radius: $radius-md;
+		cursor: pointer;
+	}
+
+	&.open {
+		visibility: visible;
+		opacity: 1;
+	}
+
+	&-close {
+		order: 2;
+		width: 26px;
+		height: 26px;
+		position: relative;
+		margin: 0 0 20px auto;
+		cursor: pointer;
+
+		&::before, &::after {
+			content: '';
+			position: absolute;
+			top: 50%;
+			left: 0;
+			right: 0;
+			height: 2px;
+			background: $accent-color;
+			transform: rotate(45deg);
+		}
+		&::after {
+			transform: rotate(-45deg);
+		}
+	}
+
+	&__header {
+		display: flex;
+		justify-content: space-between;
+		@include vieport-md {
+			gap: 30px;
+		}
+	}
+}
+
+.pop_up.open .pop_up__box {
+	transform: scale(1);
+}

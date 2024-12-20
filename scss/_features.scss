@@ -1,0 +1,90 @@
+.cards_section__link {
+  text-decoration: none;
+  @include caps;
+  transition: .2s;
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 100%;
+    width: 9px;
+    height: 9px;
+    border-right: 2.5px solid;
+    border-bottom: 2.5px solid;
+    transform: rotate(-45deg);
+  }
+  &:hover {
+    color: $accent-color;
+  }
+}
+
+.cards_section--p60px {
+  padding-top: 30px;
+  @include vieport-md {
+    padding-top: 60px;
+  }
+}
+
+.cards_section-title {
+  @include subtitle-red;
+  @include vieport-md {
+    padding-bottom: 60px;
+  }
+}
+
+.cards_container {
+  padding-bottom: 60px;
+
+  @include vieport-md {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 60px;
+  }
+
+  &__card {
+    padding-top: 30px;
+    
+    @include vieport-md {
+      padding-top: 0;
+      flex: 1 1 30%;
+    }
+
+    @include vieport-lg {
+      flex-basis: 25%;
+    }
+
+    
+    &__img {
+      display: inline-block;
+      padding: 14px;
+      border-radius: 24px;
+      background: $basic-white;
+      &>svg {
+        width: 64px;
+        height: 64px;
+      }
+    }
+  
+    &-title {
+      padding-top: 30px;
+
+      &>a {
+        text-decoration: none;
+        @include subtitle (22px, $active-regular-color);
+        transition: .2s;
+        &:hover {
+          color: $accent-color;
+        }
+      }
+    }
+  
+    &-paragpaph {
+      color: $basic-white;
+      padding-top: 15px;
+    }
+  }
+}
+ 
+
+
